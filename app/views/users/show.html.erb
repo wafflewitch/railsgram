@@ -1,0 +1,14 @@
+<div class="d-flex align-items-center justify-content-center mt-5">
+  <div class="media mr-5 align-self-start">
+    <%= image_tag avatar_url_for(@user, size: 128), class: "rounded-circle mr-4" %>
+  </div>
+  <div class="media">
+    <div class="media-body">
+      <div class="d-flex flex-row align-items-center justify-content-between">
+          <h1><%= @user.username %></h1>
+          <%= link_to "Edit", edit_user_registration_path, class: "btn btn-secondary btn-sm ml-3" if current_user.id == @user.id %>
+      </div>
+    </div>
+  </div>
+</div>
+
