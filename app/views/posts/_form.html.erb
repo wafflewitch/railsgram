@@ -1,0 +1,26 @@
+<%= form_with(model: post, local: true) do |f| %>
+  <% if f.object.errors.any? %>
+    <p>
+      <%= pluralize(f.object.errors.count, "error") %> prevented the form from being saved.
+    </p>
+
+    <ul>
+      <% f.object.errors.full_messages.each do |message| %>
+      <li>
+        <%= message %>
+      </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= f.hidden_field :post, value: f.object %>
+  <div class="form-group">
+    <%= f.label :image, "Your image" %>
+    <div class="custom-file">
+      <%= f.file_field :image, class: "custom-file-input" %>
+      <label class="custom-file-label">
+        Select file...
+      </label>
+    </div>
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
