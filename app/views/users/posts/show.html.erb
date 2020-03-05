@@ -13,9 +13,11 @@
               <small>
                 <%= link_to "Delete", post_path(@post), class: "btn btn-sm btn-outline-danger", method: :delete, data: { confirm: "Are you sure?" } %>
               </small>
-            <% else %>
             <% end %>
           </h5>
+          <div data-behavior="post_<%= @post.id %>_likes">
+            <%= render(partial: "posts/likes", locals: { post: @post }) %>
+          </div>
         </div>
       </div>
     </div>

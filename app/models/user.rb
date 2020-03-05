@@ -8,4 +8,9 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
+  def likes?(likeable)
+    likeable.likes.where(user_id: id).any?
+  end
 end

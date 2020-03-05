@@ -1,0 +1,12 @@
+<h5 class="text-muted">
+  <%= post.likes_count %>
+  <% if current_user.present? && current_user.likes?(post) %>
+    <%= link_to post_likes_path(post), method: :delete, remote: true do %>
+      <svg fill="purple" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+    <% end %>
+  <% else %>
+    <%= link_to post_likes_path(post), method: :post, remote: true do %>
+      <svg fill="grey" viewBox="0 0 24 24" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+    <% end %>
+  <% end %>
+</h5>
