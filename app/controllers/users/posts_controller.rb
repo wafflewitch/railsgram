@@ -5,6 +5,8 @@ module Users
 
     def show
       @post = @user.posts.with_attached_image.find(params[:id])
+      @comments = @post.comments.all
+      @comment = @post.comments.new
     end
 
     private

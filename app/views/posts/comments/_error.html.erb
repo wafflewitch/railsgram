@@ -1,0 +1,8 @@
+<% if comment.errors.any? %>
+  <div class="alert alert-danger">
+    Please fix the following errors:
+      <% comment.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+  </div>
+</div>
