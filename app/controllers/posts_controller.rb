@@ -19,6 +19,12 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to user_path(@post.user.username), notice: "Post Deleted"
+  end
+
   private
 
   def post_params
