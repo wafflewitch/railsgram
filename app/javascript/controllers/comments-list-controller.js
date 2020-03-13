@@ -7,12 +7,36 @@
 //   <h1 data-target="hello.output"></h1>
 // </div>
 
-import { Controller } from "stimulus"
+import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = [ "output" ]
+  static targets = [
+    "postId",
+    "commentList",
+    "blankslateText",
+    "newCommentErrors",
+    "textarea"
+  ];
 
-  connect() {
-    this.outputTarget.textContent = 'Hello, World!'
+  connect() {}
+
+  onPostError(event) {
+    console.log('error');
+    let [data, status, xhr] = event.detail;
+
+    this.newCommentErrorsTarget.innerHTML = xhr.response;
+  }
+
+  onPostSuccess(event) {
+    console.log('success');
+    let [data, status, xhr] = event.detail;
+
+    if (this.blankslateTextTargets.length > 0) {
+      this.blankslateTextTarget.remove();
+    }
+
+    this.commentListTarget.innerHTML += xhr.response;
+    this.textareaTarget.value = "";
+    this.newCommentErrorsTarget.innerHTML = "";
   }
 }

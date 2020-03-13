@@ -4,7 +4,7 @@ module Posts
     before_action :set_post
 
     def create
-      @comment = @post.comments.build(comment_params.merge(user: current_user))
+      @comment = @post.comments.build(comments_params.merge(user: current_user))
 
       if @comment.save
         render partial: 'posts/comments/comment', locals: { comment: @comment }
@@ -19,7 +19,7 @@ module Posts
       @post = Post.find(params[:post_id])
     end
 
-    def comment_params
+    def comments_params
       params.require(:comment).permit(:body)
     end
   end
