@@ -13,7 +13,19 @@ module Posts
       end
     end
 
+    def show
+      @comments = @post.comments
+        .where("created_at < ?", DateTime.parse(params[:last_result_timestamp]))
+        .order(created_at: :desc)
+        .limit(5)
+    end
+
     private
+
+    def more_records?(post, last_result)
+      post.comments.where("created_at < ?", last_result.created_at).any?
+    end
+    helper_method :more_records?
 
     def set_post
       @post = Post.find(params[:post_id])

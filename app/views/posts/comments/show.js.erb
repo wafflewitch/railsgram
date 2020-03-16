@@ -1,0 +1,11 @@
+var nextPageCommentHTML =
+  "<%= escape_javascript(render partial: 'posts/comments/comment', collection: @comments.reverse) %>";
+var placeholder = document.createElement('div');
+placeholder.innerHTML = nextPageCommentHTML;
+
+var updatedPaginationLinksHTML =
+  "<%= escape_javascript(render partial: 'posts/comments/pagination_links', locals: { post: @post, last_result: @comments.reverse.first }) %>";
+
+var paginationControls = document.querySelector('[data-behavior="pagination-controls"]');
+paginationControls.innerHTML = updatedPaginationLinksHTML;
+paginationControls.insertAdjacentElement('afterend', placeholder);

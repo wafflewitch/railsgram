@@ -32,7 +32,11 @@
       <div class="card-body py-4">
         <div data-target="comments-list.commentList">
           <% if @comments.any? %>
-            <%= render(partial: "posts/comments/comment", collection: @comments) %>
+            <div data-behavior="pagination-controls" class="text-center">
+              <%= render partial: "posts/comments/pagination_links",
+                locals: { post: @post, last_result: @comments.reverse.first } %>
+            </div>
+            <%= render(partial: "posts/comments/comment", collection: @comments.reverse) %>
           <% else %>
             <h6 data-target="comments-list.blankslateText">No comments yet.</h6>
           <% end %>
