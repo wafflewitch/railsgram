@@ -28,7 +28,7 @@
   <div class="col-sm-8 mx-auto">
     <h3 class="mt-3 mb-4">Comments</h3>
 
-    <div class="card shadow-sm" data-controller="comments-list">
+    <div class="card shadow-sm" data-controller="comments-list" data-target="comments-list.postId" data-post-id="<%= @post.id %>">
       <div class="card-body py-4">
         <div data-target="comments-list.commentList">
           <% if @comments.any? %>
