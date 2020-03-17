@@ -7,6 +7,10 @@
       <div class="d-flex flex-row align-items-center justify-content-between">
           <h1><%= @user.username %></h1>
           <%= link_to "Edit", edit_user_registration_path, class: "btn btn-secondary btn-sm ml-3" if current_user.id == @user.id %>
+
+          <div class="ml-3" data-behavior="user_<%= @user.id %>_follow_button">
+            <%= render "users/follow_button", user: @user %>
+          </div>
       </div>
     </div>
   </div>

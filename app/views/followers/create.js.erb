@@ -1,0 +1,2 @@
+var partial = "<%= escape_javascript(render partial: 'users/follow_button', locals: { user: @user }) %>"
+document.querySelector('[data-behavior="user_<%= @user.id %>_follow_button"]').innerHTML = partial;
