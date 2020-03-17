@@ -21,6 +21,13 @@
         Select file...
       </label>
     </div>
+
+    <%= f.fields_for :comments, f.object.comments.new do |comment_form| %>
+      <%= comment_form.label :body, "Comment" %>
+      <%= comment_form.text_area :body, class: "form-control",
+        placeholder: "Start the convo" %>
+    <% end %>
+
     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
