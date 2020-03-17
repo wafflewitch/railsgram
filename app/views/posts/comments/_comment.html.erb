@@ -3,10 +3,19 @@
     <%= image_tag avatar_url_for(comment.user, size: 48), class: "rounded-circle" %>
   </div>
   <div class="col-sm-11">
-    <small class="float-right text-muted">
-      <%= link_to "Delete", post_comment_path(comment.commentable, comment), method: :delete, remote: true, class: "text-muted", data: { confirm: "Are you sure?" } %>
-    </small>
+    <% unless local_assigns[:realtime].present? %>
+      <% if comment.user_id == current_user.id || comment.commentable.user_id == current_user&.id %>
+        <small class="float-right text-muted">
+          <%= link_to "Delete", post_comment_path(comment.commentable, comment),
+            method: :delete,
+            remote: true, class: "text-muted",
+            data: { confirm: "Are you sure?" } %>
+        </small>
+      <% end %>
+    <% end %>
+
     <small><em><strong>Posted by: <%= comment.user.username %></strong> on <%= comment.created_at %></em></small>
+
     <p><%= comment.body %></p>
   </div>
 </div>

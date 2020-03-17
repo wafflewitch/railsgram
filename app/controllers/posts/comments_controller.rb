@@ -40,7 +40,7 @@ module Posts
     def comment_html
       ApplicationController.renderer.render(
         partial: "posts/comments/comment",
-        locals: { comment: @comment },
+        locals: { comment: @comment, realtime: true },
         format: :html
       )
     end

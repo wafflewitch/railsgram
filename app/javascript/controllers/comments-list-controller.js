@@ -90,8 +90,20 @@ export default class extends Controller {
       this.blankslateTextTarget.remove();
     }
 
-    // this.commentListTarget.innerHTML += xhr.response;
+    this.scrollToBottom();
     this.textareaTarget.value = "";
     this.newCommentErrorsTarget.innerHTML = "";
+  }
+
+  scrollToBottom() {
+    const lastComment = this.commentListTarget.children.item(
+      this.commentListTarget.children.length - 1
+    );
+
+    lastComment.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    })
   }
 }
