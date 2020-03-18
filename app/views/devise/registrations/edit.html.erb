@@ -1,73 +1,93 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <div class="justify-content-center align-items-center">
+    <div class="row">
+      <div class="col-md-8 col-lg-8 mx-auto my-5">
+        <div class="card shadow-sm">
+          <div class="card-body p-5">
+            <h2 class="my-3">Edit Account</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+            <hr />
 
-  <div class="row">
-    <div class="col-sm-2">
-      <%= image_tag avatar_url_for(f.object, size: 128), class: 'rounded-circle ml-4' %>
-    </div>
-    <div class="col-sm-10">
-      <div class="form-group">
-        <%= f.label :avatar %>
-        <%= f.file_field :avatar %>
-      </div>
-      <% if !f.object.avatar.attached? %>
-        <span class="text-muted">We're using your avatar from Gravatar.</span>
-      <% end %>
-    </div>
-  </div>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
-  </div>
+              <div class="row">
+                <div class="col-sm-2">
+                  <%= image_tag avatar_url_for(f.object, size: 64), class: 'rounded-circle ml-4' %>
+                </div>
+                <div class="col-sm-10">
+                  <div class="form-group">
+                    <%= f.label :avatar %>
+                    <div class="custom-file">
+                      <%= f.file_field :avatar, class: "custom-file-input" %>
+                        <label class="custom-file-label">
+                          Select file...
+                        </label>
+                    </div>
+                    <% if !f.object.avatar.attached? %>
+                      <span class="text-muted">We're using your avatar from Gravatar.</span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autocomplete: "Waffles" %>
-  </div>
+              <div class="form-group">
+                <%= f.label :username %>
+                <%= f.text_field :username, autofocus: true, class: "form-control" %>
+              </div>
 
-  <div class="field">
-    <%= f.label :bio %><br />
-    <%= f.text_area :bio, autocomplete: "I like waffles." %>
-  </div>
+              <div class="form-group">
+                <%= f.label :name %>
+                <%= f.text_field :name, autocomplete: "Waffles", class: "form-control" %>
+              </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+              <div class="form-group">
+                <%= f.label :bio %>
+                <%= f.text_area :bio, placeholder: "Tell us about yourself!", class: "form-control", rows: 3 %>
+              </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+              <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+              </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+              <div class="form-group">
+                <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+                <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+                <% if @minimum_password_length %>
+                  <em><%= @minimum_password_length %> characters minimum</em>
+                <% end %>
+              </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+              <div class="form-group">
+                <%= f.label :password_confirmation %>
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+              </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+              <div class="form-group">
+                <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+                <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+              </div>
 
-<h3>Cancel my account</h3>
+              <div class="form-group">
+                <%= f.submit "Update", class: "btn btn-primary btn-block" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+        <div class="card shadow-sm mt-5">
+          <div class="card-body p-5">
+            <h3 class="mt-3">Cancel my account</h3>
 
-<%= link_to "Back", :back %>
+            <p>Unhappy? <%= button_to "Cancel my account",
+              registration_path(resource_name),
+              data: { confirm: "Are you sure?" },
+              method: :delete,
+              class: "btn btn-sm btn-outline-danger" %></p>
+          </div>
+        </div>
