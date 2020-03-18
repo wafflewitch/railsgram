@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :followers, only: [:create, :destroy], param: :user_id
 
   resources :posts do
+    collection do
+      get 'explore'
+    end
     resource :likes, only: [:create, :destroy], module: :posts
     resources :comments, only: [:create, :new, :show, :destroy], module: :posts
   end
