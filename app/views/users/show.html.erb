@@ -5,13 +5,37 @@
   <div class="media">
     <div class="media-body">
       <div class="d-flex flex-row align-items-center justify-content-between">
-          <h1><%= @user.username %></h1>
-          <%= link_to "Edit", edit_user_registration_path, class: "btn btn-secondary btn-sm ml-3" if current_user.id == @user.id %>
+          <h1>
+            <%= @user.username %>
+            <%= link_to "Edit", edit_user_registration_path,
+            class: "btn btn-secondary btn-sm ml-3" if current_user.id == @user.id %>
+          </h1>
 
           <div class="ml-3" data-behavior="user_<%= @user.id %>_follow_button">
             <%= render "users/follow_button", user: @user %>
           </div>
       </div>
+      <div class="d-flex flex-row align-items-center justify-content-between my-2">
+        <h5 class="mr-2">
+          <strong><%= @user.posts.count %> <small>posts</small></strong>
+        </h5>
+        <h5 class="mr-2">
+          <strong><%= @user.followers.count %> <small>followers</small></strong>
+        </h5>
+        <h5 class="mr-2">
+          <strong><%= @user.following.count %> <small>following</small></strong>
+        </h5>
+      </div>
+
+      <% if @user.name.present? %>
+        <strong><%= @user.name %></strong>
+      <% end %>
+
+      <% if @user.bio.present? %>
+        <small>
+          <p class="m-0"><%= simple_format(@user.bio) %></p>
+        </small>
+      <% end %>
     </div>
   </div>
 </div>
