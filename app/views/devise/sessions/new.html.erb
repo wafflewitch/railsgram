@@ -17,6 +17,9 @@
               <div class="form-group">
                 <%= f.label :password %>
                 <%= f.password_field :password, placeholder: "********", autocomplete: "current-password", class: "form-control" %>
+                <small class="text-muted form-text">
+                  Forgot your password? <%= link_to "Click here to reset it.", new_password_path(resource_name), class: "text-muted" %>
+                </small>
               </div>
 
               <% if devise_mapping.rememberable? %>
@@ -30,8 +33,6 @@
                 <%= f.submit "Log In", class: "btn btn-primary btn-block" %>
               </div>
             <% end %>
-
-            <%= render "devise/shared/links" %>
           </div>
         </div>
       </div>
