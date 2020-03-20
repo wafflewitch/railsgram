@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <div class="justify-content-center align-items-center">
     <div class="row">
       <div class="col-md-8 col-lg-8 mx-auto my-5">
@@ -9,7 +9,6 @@
             <hr />
 
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-              <%= render "devise/shared/error_messages", resource: resource %>
               <%= devise_error_messages! %>
 
               <div class="row">
