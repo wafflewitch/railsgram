@@ -14,7 +14,7 @@
       <% end %>
     <% end %>
 
-    <small><em><strong>Posted by: <%= comment.user.username %></strong> on <%= comment.created_at %></em></small>
+    <small><em><strong>Posted by: <%= comment.user.username %></strong> <%= local_time_ago(comment.created_at) %></em></small>
 
     <p><%= comment.body %></p>
   </div>
