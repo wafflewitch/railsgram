@@ -11,4 +11,6 @@ class Post < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
 
   accepts_nested_attributes_for :comments, reject_if: proc { |attributes| attributes['body'].blank? }
+
+  acts_as_taggable_on :tags
 end
