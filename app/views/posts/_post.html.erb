@@ -6,6 +6,9 @@
       <% end %>
     </div>
     <div class="card-body card-text mx-auto">
+      <p><% post.tag_list.each do |tag| %>
+        <%= link_to tag, tagged_posts_path(tag: tag) %>
+      <% end %></p>
       <h5>
         <%= image_tag avatar_url_for(post.user, size: 48), class: "rounded-circle" %>
         <%= link_to post.user.username, user_path(post.user.username) %>

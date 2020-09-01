@@ -22,6 +22,9 @@
       </label>
     </div>
 
+    <%= f.label :tag_list, "Tags" %>
+    <%= f.text_area :tag_list, class: "form_control", placeholder: "Example: waffles" %>
+
     <%= f.fields_for :comments, f.object.comments.new do |comment_form| %>
       <%= comment_form.label :body, "Comment" %>
       <%= comment_form.text_area :body, class: "form-control",

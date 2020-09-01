@@ -24,15 +24,32 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @posts = tagged
+  end
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to user_path(@post.user.username), notice: "Post Deleted"
   end
 
+  def tagged
+    if params[:tag].present?
+      @posts = Post.tagged_with(params[:tag])
+    else
+      @posts = Post.all
+    end
+    if @posts.nil?
+      redirect_to explore_posts_path, notice: "No posts with that tag"
+    else
+      return @posts
+    end
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:image, comments_attributes: [:body])
+    params.require(:post).permit(:image, :tag_list, comments_attributes: [:body])
   end
 end
