@@ -26,7 +26,7 @@ gem 'devise', '~> 4.7'
 gem 'acts-as-taggable-on', '~> 6.0'
 
 # Use Active Storage variant
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 
 gem 'active_storage_validations'
 
